@@ -2,70 +2,68 @@
   box-sizing: border-box;
 }
 
-.upper {
-  margin: auto;
-  width: 270px;
-  height: 324px;
-  padding: 10px;
-  display: flex;
-  flex-direction: column;
-  gap: 8%;
-}
-
-.row {
-  display: flex;
-  flex-direction: row;
-  height: 25%;
-  gap: 2%;
-}
-
-.krow {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  height: 33%;
-  gap: 1%;
-}
-
-input {
-  width: 100%;
-  height: 100%;
-  border-radius: 5%;
-  &:focus {
-    background-color: pink;
+body {
+  h1 {
+    text-align: center;
+    text-decoration: underline;
+    margin: 0;
   }
-}
-
-button {
-  width: 50px;
-  height: 50px;
-  border-radius: 7px;
-  border: 1px solid gray;
-  background-color: rgb(175, 175, 219);
-  font-size: large;
-  text-align: center;
-  cursor: pointer;
-}
-button:hover {
-  background-color: rgb(94, 94, 119);
-}
-button:active {
-  background-color: rgb(175, 175, 219);
-  font-weight: bold;
-}
-
-h1 {
-  text-align: center;
-  text-decoration: underline;
-  margin: 0;
-}
-
-.keyboard {
-  margin: 0 auto 0 auto;
-  width: 650px;
-  height: 200px;
-  padding: 10px;
-  display: flex;
-  flex-direction: column;
-  gap: 5%;
+  .container {
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    .upper {
+      margin: auto;
+      width: 270px;
+      height: 324px;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 8%;
+      .row {
+        display: flex;
+        flex-direction: row;
+        height: 25%;
+        gap: 2%;
+        input {
+          width: 50px;
+          height: 50px;
+          border-radius: 5%;
+        }
+      }
+    }
+    .keyboard {
+      margin: 0 auto 0 auto;
+      width: 650px;
+      height: 200px;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 5%;
+      .krow {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        height: 33%;
+        gap: 1%;
+        button {
+          width: 50px;
+          height: 50px;
+          border-radius: 7px;
+          border: 1px solid gray;
+          background-color: rgb(175, 175, 219);
+          font-size: large;
+          text-align: center;
+          cursor: pointer;
+        }
+        button:hover {
+          background-color: rgb(94, 94, 119);
+        }
+        button:active {
+          background-color: rgb(175, 175, 219);
+          font-weight: bold;
+        }
+      }
+    }
+  }
 }

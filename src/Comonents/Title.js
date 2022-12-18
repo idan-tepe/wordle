@@ -1,9 +1,9 @@
 import React from "react";
 
-export function Title(props) {
+export function NavBar(props) {
   return (
     <header>
-      <h1>{props.appName}</h1>
+      <h1>WORDLE</h1>
     </header>
   );
 }

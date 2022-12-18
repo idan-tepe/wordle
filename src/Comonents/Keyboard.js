@@ -1,29 +1,16 @@
-import React, { useContext } from "react";
-import { AppContext } from "../contexts/appContext";
+import React /*, { useContext }*/ from "react";
+// import { AppContext } from "../contexts/appContext";
 
-export function Keyboard() {
+export function Keyboard({ letterInInput }) {
   const r1 = ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p"];
   const r2 = ["a", "s", "d", "f", "g", "h", "j", "k", "l"];
   const r3 = ["z", "x", "c", "v", "b", "n", "m"];
 
-  const { board, setBoard, attempt, setAttempt } = useContext(AppContext);
+  // const { board, setBoard, attempt, setAttempt } = useContext(AppContext);
 
   function handleButtonClick(e) {
     console.log(e.target.innerText);
-    board[attempt.rowAttempt][attempt.cellAttempt] = e.target.innerText;
-    console.log(board);
-    attempt.cellAttempt++;
-    setBoard([...board]);
-    if (attempt.cellAttempt > 4) {
-      const newAttempt = {
-        ...attempt,
-        rowAttempt: attempt.rowAttempt + 1,
-        cellAttempt: 0,
-      };
-      setAttempt(newAttempt);
-
-      setTimeout(() => alert("done"), 1);
-    }
+    letterInInput(e.target.innerText);
   }
 
   function createButtomsRow(r) {

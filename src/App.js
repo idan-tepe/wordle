@@ -1,26 +1,50 @@
 import "./App.scss";
-import { Title } from "./Comonents/Title";
+import { NavBar } from "./Comonents/Title";
 import { InputBoxes } from "./Comonents/InputsBoxes";
 import { Keyboard } from "./Comonents/Keyboard";
 import { matrix } from "./Comonents/matrix";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AppContext } from "./contexts/appContext";
 
 function App() {
   const [board, setBoard] = useState(matrix);
   const [attempt, setAttempt] = useState({ rowAttempt: 0, cellAttempt: 0 });
 
-  // useEffect(() => {
-  //   board[attempt.rowAttempt][attempt.cellAttempt].focus();
-  // }, [board]);
+  useEffect(() => {
+    document.getElementsByClassName("row")[0].firstChild.focus();
+  }, []);
 
-  const appName = `WORDLE!!!`;
+  function letterInInput(letter) {
+    board[attempt.rowAttempt][attempt.cellAttempt] = letter;
+    console.log(board);
+    attempt.cellAttempt++;
+    setBoard([...board]);
+    if (attempt.cellAttempt > 4) {
+      const newAttempt = {
+        ...attempt,
+        rowAttempt: attempt.rowAttempt + 1,
+        cellAttempt: 0,
+      };
+      setAttempt(newAttempt);
+
+      setTimeout(() => alert("done"), 100);
+    }
+  }
+
+  function handleKeyPress(e) {
+    if ("qwertyuioplkjhgfdsazxcvbnm".includes(e.key)) {
+      letterInInput(e.key);
+    }
+  }
+
   return (
     <div className="container">
-      <Title appName={appName} />
+      <NavBar />
       <AppContext.Provider value={{ board, setBoard, attempt, setAttempt }}>
-        <InputBoxes />
-        <Keyboard />
+        <div id="gameBoard" onKeyUp={(e) => handleKeyPress(e)}>
+          <InputBoxes id="InputBoxes" />
+          <Keyboard letterInInput={letterInInput} />
+        </div>
       </AppContext.Provider>
     </div>
   );
