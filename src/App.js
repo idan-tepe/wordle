@@ -3,16 +3,12 @@ import { NavBar } from "./Comonents/Title";
 import { InputBoxes } from "./Comonents/InputsBoxes";
 import { Keyboard } from "./Comonents/Keyboard";
 import { matrix } from "./Comonents/matrix";
-import { useEffect, useState } from "react";
 import { AppContext } from "./contexts/appContext";
+import { useState } from "react";
 
 function App() {
   const [board, setBoard] = useState(matrix);
   const [attempt, setAttempt] = useState({ rowAttempt: 0, cellAttempt: 0 });
-
-  useEffect(() => {
-    document.getElementsByClassName("row")[0].firstChild.focus();
-  }, []);
 
   function letterInInput(letter) {
     board[attempt.rowAttempt][attempt.cellAttempt] = letter;
@@ -26,8 +22,7 @@ function App() {
         cellAttempt: 0,
       };
       setAttempt(newAttempt);
-
-      setTimeout(() => alert("done"), 100);
+      setTimeout(() => alert("done"), 0);
     }
   }
 
