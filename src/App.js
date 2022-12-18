@@ -4,11 +4,25 @@ import { InputBoxes } from "./Comonents/InputsBoxes";
 import { Keyboard } from "./Comonents/Keyboard";
 import { matrix } from "./Comonents/matrix";
 import { AppContext } from "./contexts/appContext";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function App() {
   const [board, setBoard] = useState(matrix);
   const [attempt, setAttempt] = useState({ rowAttempt: 0, cellAttempt: 0 });
+  const [alertHandle, setAlertHandle] = useState(false);
+
+  useEffect(() => {
+    if (attempt.rowAttempt > 0) {
+      setAlertHandle(true);
+    }
+  }, [attempt]);
+
+  useEffect(() => {
+    if (alertHandle) {
+      alert("done");
+      setAlertHandle(false);
+    }
+  }, [alertHandle]);
 
   function letterInInput(letter) {
     board[attempt.rowAttempt][attempt.cellAttempt] = letter;
@@ -22,7 +36,9 @@ function App() {
         cellAttempt: 0,
       };
       setAttempt(newAttempt);
-      setTimeout(() => alert("done"), 0);
+
+      // setTimeout(() => alert("done"), 0);
+      // alert("djaknd");
     }
   }
 

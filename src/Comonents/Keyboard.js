@@ -23,7 +23,6 @@ export function Keyboard({ letterInInput }) {
       <div className="krow">{createButtomsRow(r1)}</div>
       <div className="krow">{createButtomsRow(r2)}</div>
       <div className="krow">
-        <button>enter</button>
         {createButtomsRow(r3)}
         <button>&#9003;</button>
       </div>
