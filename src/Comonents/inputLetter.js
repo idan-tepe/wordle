@@ -12,6 +12,10 @@ export function InputLetter(props) {
 
   const letter = board[props.row][props.cell];
   return (
-    <input value={letter} readOnly className={isCurrentAttemp() && "focuss"} />
+    <input
+      value={letter}
+      readOnly
+      className={isCurrentAttemp() ? "focuss" : ""}
+    />
   );
 }

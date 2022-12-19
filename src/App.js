@@ -12,6 +12,10 @@ function App() {
   const [alertHandle, setAlertHandle] = useState(false);
 
   useEffect(() => {
+    document.getElementsByClassName("row")[0].firstChild.focus();
+  }, []);
+
+  useEffect(() => {
     if (attempt.rowAttempt > 0) {
       setAlertHandle(true);
     }
