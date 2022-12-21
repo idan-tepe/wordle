@@ -1,10 +1,11 @@
-import React /*, { useContext }*/ from "react";
-// import { AppContext } from "../contexts/appContext";
+import React, { useContext /*, { useContext }*/ } from "react";
+import { AppContext } from "../contexts/appContext";
 
-export function Keyboard({ letterInInput }) {
+export function Keyboard() {
   const r1 = ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p"];
   const r2 = ["a", "s", "d", "f", "g", "h", "j", "k", "l"];
   const r3 = ["z", "x", "c", "v", "b", "n", "m"];
+  const { letterInInput } = useContext(AppContext);
 
   // const { board, setBoard, attempt, setAttempt } = useContext(AppContext);
 

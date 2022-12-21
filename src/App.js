@@ -27,9 +27,6 @@ function App() {
       };
       setAttempt(newAttempt);
       console.log("done");
-
-      // setTimeout(() => alert("done"), 0);
-      // alert("djaknd");
     }
   }
 
@@ -42,10 +39,12 @@ function App() {
   return (
     <div className="container">
       <NavBar />
-      <AppContext.Provider value={{ board, setBoard, attempt, setAttempt }}>
-        <div id="gameBoard" onKeyUp={(e) => handleKeyPress(e)}>
-          <InputBoxes id="InputBoxes" />
-          <Keyboard letterInInput={letterInInput} />
+      <AppContext.Provider
+        value={{ board, setBoard, attempt, setAttempt, letterInInput }}
+      >
+        <div onKeyUp={(e) => handleKeyPress(e)}>
+          <InputBoxes />
+          <Keyboard />
         </div>
       </AppContext.Provider>
     </div>
