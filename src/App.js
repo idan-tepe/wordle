@@ -9,24 +9,10 @@ import { useEffect, useState } from "react";
 function App() {
   const [board, setBoard] = useState(matrix);
   const [attempt, setAttempt] = useState({ rowAttempt: 0, cellAttempt: 0 });
-  const [alertHandle, setAlertHandle] = useState(false);
 
   useEffect(() => {
     document.getElementsByClassName("row")[0].firstChild.focus();
   }, []);
-
-  useEffect(() => {
-    if (attempt.rowAttempt > 0) {
-      setAlertHandle(true);
-    }
-  }, [attempt]);
-
-  useEffect(() => {
-    if (alertHandle) {
-      alert("done");
-      setAlertHandle(false);
-    }
-  }, [alertHandle]);
 
   function letterInInput(letter) {
     board[attempt.rowAttempt][attempt.cellAttempt] = letter;
@@ -40,6 +26,7 @@ function App() {
         cellAttempt: 0,
       };
       setAttempt(newAttempt);
+      console.log("done");
 
       // setTimeout(() => alert("done"), 0);
       // alert("djaknd");
