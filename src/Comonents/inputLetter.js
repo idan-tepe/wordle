@@ -10,7 +10,7 @@ export function InputLetter(props) {
     );
   };
 
-  const letter = board[props.row][props.cell];
+  const letter = board[props.row][props.cell].letter;
   return (
     <input
       value={letter}

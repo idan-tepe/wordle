@@ -9,7 +9,7 @@ export function Game() {
   const boardApi = useBoard();
   return (
     <AppContext.Provider value={boardApi}>
-      <div onKeyUp={(e) => boardApi.handleKeyPress(e)}>
+      <div>
         <InputBoxes />
         <Keyboard />
       </div>
