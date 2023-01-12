@@ -25,7 +25,7 @@ export function Keyboard() {
       <div className="krow">{createButtomsRow(r2)}</div>
       <div className="krow">
         {createButtomsRow(r3)}
-        <button>&#9003;</button>
+        {/* <button>&#9003;</button> */}
       </div>
     </div>
   );
