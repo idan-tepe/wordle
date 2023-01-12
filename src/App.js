@@ -7,16 +7,19 @@ import { useState } from "react";
 
 function App() {
   const [show, setShow] = useState(false);
+  const [user, setUser] = useState("guest");
   const handleShow = () => setShow(true);
 
   return (
     <>
-      <NavBarContext.Provider value={{ setShow, handleShow, show }}>
+      <NavBarContext.Provider
+        value={{ setShow, handleShow, show, user, setUser }}
+      >
         <NavBar />
+        <div className="container">
+          <Outlet />
+        </div>
       </NavBarContext.Provider>
-      <div className="container">
-        <Outlet />
-      </div>
     </>
   );
 }

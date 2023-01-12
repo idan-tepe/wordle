@@ -4,7 +4,8 @@ import { NavBarContext } from "../contexts/navBarContext";
 import { InfoPopUp } from "./infoPage";
 
 export default function NavBar() {
-  const { handleShow } = useContext(NavBarContext);
+  const { handleShow, user, setUser } = useContext(NavBarContext);
+
   return (
     <>
       <nav className="navbar navbar-expand-lg navbar navbar-dark bg-dark">
@@ -17,9 +18,18 @@ export default function NavBar() {
             <Link className="nav-item nav-link active" to="/game">
               game
             </Link>
-            <Link className="nav-item nav-link active" to="/sign-in">
-              sign in
-            </Link>
+            {user === "guest" ? (
+              <Link className="nav-item nav-link active" to="/sign-in">
+                sign in
+              </Link>
+            ) : (
+              <span
+                className="nav-item nav-link active"
+                onClick={() => setUser("guest")}
+              >
+                {user} log out
+              </span>
+            )}
             <Link className="nav-item nav-link active" onClick={handleShow}>
               info
             </Link>
