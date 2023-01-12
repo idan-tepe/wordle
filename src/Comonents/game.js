@@ -1,4 +1,4 @@
-import { InputBoxes } from "./InputsBoxes";
+import { BoardCreate } from "./boardCreate";
 import { Keyboard } from "./Keyboard";
 
 import { AppContext } from "../contexts/appContext";
@@ -10,7 +10,7 @@ export function Game() {
   return (
     <AppContext.Provider value={boardApi}>
       <div>
-        <InputBoxes />
+        <BoardCreate />
         <Keyboard />
       </div>
     </AppContext.Provider>

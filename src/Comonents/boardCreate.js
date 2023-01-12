@@ -1,7 +1,7 @@
 import React from "react";
-import { InputLetter } from "./inputLetter";
+import { LetterCreate } from "./letterCreate";
 
-export function InputBoxes() {
+export function BoardCreate() {
   const lstRow = [0, 1, 2, 3];
   const lstLetters = [0, 1, 2, 3, 4];
 
@@ -9,7 +9,7 @@ export function InputBoxes() {
     return (
       <div className="row">
         {lstLetters.map((letter) => (
-          <InputLetter
+          <LetterCreate
             type="text"
             row={RowNum}
             cell={letter}

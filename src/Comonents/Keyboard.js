@@ -7,8 +7,6 @@ export function Keyboard() {
   const r3 = ["z", "x", "c", "v", "b", "n", "m"];
   const { letterInInput } = useContext(AppContext);
 
-  // const { board, setBoard, attempt, setAttempt } = useContext(AppContext);
-
   function handleButtonClick(e) {
     console.log(e.target.innerText);
     letterInInput(e.target.innerText);
@@ -16,7 +14,9 @@ export function Keyboard() {
 
   function createButtomsRow(r) {
     return r.map((letter) => (
-      <button onClick={(e) => handleButtonClick(e)}>{letter}</button>
+      <button onClick={(e) => handleButtonClick(e)} className={""}>
+        {letter}
+      </button>
     ));
   }
   return (

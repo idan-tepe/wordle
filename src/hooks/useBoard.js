@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 import { matrix } from "../Comonents/matrix";
+
 export function useBoard() {
   const [board, setBoard] = useState(matrix);
-  const [attempt, setAttempt] = useState({ rowAttempt: 0, cellAttempt: 0 });
+  const [attempt] = useState({ rowAttempt: 0, cellAttempt: 0 });
   const word = "abcde";
   useEffect(() => {
     //focus on the first input
@@ -11,7 +12,7 @@ export function useBoard() {
     return () => {
       document.removeEventListener("keydown", handleKeyPress);
     };
-  }, []);
+  });
 
   function letterInInput(letter) {
     if (!letter) return;
@@ -20,22 +21,19 @@ export function useBoard() {
     console.log(board);
 
     if (attempt.cellAttempt >= 4) {
-      // for (let i = 0; i < 5; i++) {
-      //   if (word.includes(board[attempt.rowAttempt][i].letter)) {
-      //     if (board[attempt.rowAttempt][i].letter === word[i]) {
-      //       console.log("green");
-      //     } else {
-      //       console.log("yellow");
-      //     }
-      //   }
-      //   console.log("gray");
-      // }
-      // const newAttempt = {
-      //   ...attempt,
-      //   rowAttempt: attempt.rowAttempt + 1,
-      //   cellAttempt: 0,
+      for (let i = 0; i < 5; i++) {
+        if (word.includes(board[attempt.rowAttempt][i].letter)) {
+          if (board[attempt.rowAttempt][i].letter === word[i]) {
+            board[attempt.rowAttempt][i].classState = "greenBG";
+          } else {
+            board[attempt.rowAttempt][i].classState = "yellowBG";
+          }
+        } else {
+          board[attempt.rowAttempt][i].classState = "grayBG";
+        }
+        console.log(board[attempt.rowAttempt][i].classState);
+      }
 
-      // setAttempt(newAttempt);
       attempt.rowAttempt++;
       attempt.cellAttempt = 0;
       console.log("done");
