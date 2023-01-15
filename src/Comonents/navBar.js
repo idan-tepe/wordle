@@ -1,11 +1,20 @@
 import { Link } from "react-router-dom";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { NavBarContext } from "../contexts/navBarContext";
 import { InfoPopUp } from "./infoPage";
 
 export default function NavBar() {
   const { handleShow, user, setUser } = useContext(NavBarContext);
 
+  useEffect(() => {
+    //console.log(data, "effect");
+    const isUser = JSON.parse(localStorage.getItem("dataKey"));
+
+    if (isUser && user === "guest") {
+      setUser(isUser.userName);
+      //setData(isUser);
+    }
+  }, [user, setUser]);
   return (
     <>
       <nav className="navbar navbar-expand-lg navbar navbar-dark bg-dark">
@@ -25,7 +34,10 @@ export default function NavBar() {
             ) : (
               <span
                 className="nav-item nav-link active"
-                onClick={() => setUser("guest")}
+                onClick={() => {
+                  setUser("guest");
+                  localStorage.removeItem("dataKey");
+                }}
               >
                 {user} log out
               </span>

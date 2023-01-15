@@ -13,7 +13,7 @@ import {
 
 export function SignInPage() {
   const { register, handleSubmit } = useForm();
-  const { setUser, setData } = useContext(NavBarContext);
+  const { setUser } = useContext(NavBarContext);
   const navigate = useNavigate();
 
   return (
@@ -33,8 +33,8 @@ export function SignInPage() {
               <form
                 onSubmit={handleSubmit((data) => {
                   navigate("/game");
-
-                  setData(data);
+                  localStorage.setItem("dataKey", JSON.stringify(data));
+                  // setData(data);
                   setUser(data.userName);
                 })}
               >

@@ -1,11 +1,7 @@
 import { useState, useEffect } from "react";
 import { matrix } from "../Comonents/matrix";
 
-export function useBoard() {
-  const [board, setBoard] = useState(matrix);
-  const [attempt] = useState({ rowAttempt: 0, cellAttempt: 0 });
-  const word = "event";
-  const dic = new Map();
+export function fillTheDictionary(word, dic) {
   const wordArray = word.split("");
   wordArray.forEach((letter) => {
     if (dic.get(letter)) {
@@ -14,6 +10,22 @@ export function useBoard() {
       dic.set(letter, 1);
     }
   });
+}
+
+function isCorrect(userWord, word, row) {
+  if (row === 3 && userWord !== word) {
+    console.log("fail");
+  } else if (userWord === word) {
+    console.log("success");
+  }
+}
+
+export function useBoard() {
+  const [board, setBoard] = useState(matrix);
+  const [attempt] = useState({ rowAttempt: 0, cellAttempt: 0 });
+  const word = "hello";
+  const dic = new Map();
+  fillTheDictionary(word, dic);
   useEffect(() => {
     document.addEventListener("keydown", handleKeyPress);
     return () => {
@@ -24,8 +36,9 @@ export function useBoard() {
   function letterInInput(letter) {
     if (!letter) return;
     board[attempt.rowAttempt][attempt.cellAttempt].letter = letter;
-    console.log(board[attempt.rowAttempt][attempt.cellAttempt]);
-    console.log(board);
+    let userWord = "";
+    // console.log(board[attempt.rowAttempt][attempt.cellAttempt]);
+    // console.log(board);
 
     if (attempt.cellAttempt >= 4) {
       for (let i = 0; i < 5; i++) {
@@ -55,20 +68,10 @@ export function useBoard() {
           board[attempt.rowAttempt][i].classState = "grayBG";
         }
       }
-
-      // for (let i = 0; i < 5; i++) {
-      //   if (word.includes(board[attempt.rowAttempt][i].letter)) {
-      //     if (board[attempt.rowAttempt][i].letter === word[i]) {
-      //       board[attempt.rowAttempt][i].classState = "greenBG";
-      //     } else {
-      //       board[attempt.rowAttempt][i].classState = "yellowBG";
-      //     }
-      //   } else {
-      //     board[attempt.rowAttempt][i].classState = "grayBG";
-      //   }
-      //   console.log(board[attempt.rowAttempt][i].classState);
-      // }
-
+      for (let ot = 0; ot < 5; ot++) {
+        userWord += board[attempt.rowAttempt][ot].letter;
+      }
+      isCorrect(userWord, word, attempt.rowAttempt);
       attempt.rowAttempt++;
       attempt.cellAttempt = 0;
       console.log("done");
