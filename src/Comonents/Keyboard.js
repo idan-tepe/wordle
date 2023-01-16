@@ -2,6 +2,11 @@ import React, { useContext } from "react";
 import { AppContext } from "../contexts/appContext";
 import { matrix } from "./matrix";
 export function Keyboard() {
+  const keysDict = new Map();
+  "abcdefghijklmnopqrstuvwxyz".split("").forEach((letter) => {
+    keysDict.set(letter, "");
+  });
+
   const r1 = ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p"];
   const r2 = ["a", "s", "d", "f", "g", "h", "j", "k", "l"];
   const r3 = ["z", "x", "c", "v", "b", "n", "m"];
@@ -19,10 +24,20 @@ export function Keyboard() {
         if (cell.letter === currentLetter) {
           if (cell.classState === "greenBG") {
             color = "green";
-          } else if (cell.classState === "yellowBG") {
+            keysDict.set(currentLetter, "green");
+          } else if (
+            cell.classState === "yellowBG" &&
+            (keysDict.get(currentLetter) === "" ||
+              keysDict.get(currentLetter) === "gray")
+          ) {
             color = "yellow";
-          } else if (cell.classState === "grayBG") {
+            keysDict.set(currentLetter, "yellow");
+          } else if (
+            cell.classState === "grayBG" &&
+            keysDict.get(currentLetter) === ""
+          ) {
             color = "gray";
+            keysDict.set(currentLetter, "gray");
           }
         }
       })
