@@ -14,7 +14,7 @@ export function Keyboard() {
 
   function createButtomsRow(r) {
     return r.map((letter) => (
-      <button onClick={(e) => handleButtonClick(e)} className={""}>
+      <button onClick={(e) => handleButtonClick(e)} className={""} key={letter}>
         {letter}
       </button>
     ));
