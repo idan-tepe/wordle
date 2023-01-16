@@ -33,7 +33,10 @@ export function SignInPage() {
               <form
                 onSubmit={handleSubmit((data) => {
                   navigate("/game");
-                  localStorage.setItem("dataKey", JSON.stringify(data));
+                  localStorage.setItem(
+                    "dataKey",
+                    JSON.stringify(data.userName)
+                  );
                   // setData(data);
                   setUser(data.userName);
                 })}
