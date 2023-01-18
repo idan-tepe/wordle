@@ -5,21 +5,20 @@ import "bootstrap/dist/css/bootstrap.css";
 import { NavBarContext } from "./contexts/navBarContext";
 import { useState } from "react";
 
+export interface INavBar {
+  setShow: React.Dispatch<React.SetStateAction<boolean>>;
+  handleShow: () => void;
+  show: boolean;
+  user: string;
+  setUser: React.Dispatch<React.SetStateAction<string>>;
+}
+
 function App() {
   const [show, setShow] = useState(false);
   const [user, setUser] = useState("guest");
-  const [data, setData] = useState([]);
 
   const handleShow = () => setShow(true);
-  // useEffect(() => {
-  //   console.log(data, "effect");
-  //   const isUser = localStorage.getItem("dataKey");
-  //   if (isUser && user === "guest") {
-  //     setUser(isUser.name);
-  //     setData(isUser);
-  //     return;
-  //   }
-  // }, [user]);
+
   return (
     <>
       <NavBarContext.Provider
@@ -29,8 +28,6 @@ function App() {
           show,
           user,
           setUser,
-          data,
-          setData,
         }}
       >
         <NavBar />

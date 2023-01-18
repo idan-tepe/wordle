@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { NavBarContext } from "../contexts/navBarContext";
 import { useNavigate } from "react-router-dom";
+import { INavBar } from "../App";
 import {
   MDBContainer,
   MDBRow,
@@ -13,7 +14,7 @@ import {
 
 export function SignInPage() {
   const { register, handleSubmit } = useForm();
-  const { setUser } = useContext(NavBarContext);
+  const { setUser } = useContext(NavBarContext) as INavBar;
   const navigate = useNavigate();
 
   return (

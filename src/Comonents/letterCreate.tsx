@@ -1,8 +1,9 @@
 import { useContext } from "react";
 import { AppContext } from "../contexts/appContext";
+import { IuseBoard } from "../hooks/useBoard";
 
-export function LetterCreate(props) {
-  const { board, attempt } = useContext(AppContext);
+export function LetterCreate(props: { cell: number; row: number }) {
+  const { board, attempt } = useContext(AppContext) as IuseBoard;
 
   const isCurrentAttemp = () => {
     if (

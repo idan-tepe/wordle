@@ -1,18 +1,31 @@
 import { useState, useEffect } from "react";
 import { matrix } from "../Comonents/matrix";
 
-export function fillTheDictionary(word, dic) {
+export interface IuseBoard {
+  board: {
+    letter: string;
+    classState: string;
+  }[][];
+  attempt: {
+    rowAttempt: number;
+    cellAttempt: number;
+  };
+  letterInInput: (letter: any) => void;
+  handleKeyPress: (e: any) => void;
+}
+
+export function fillTheDictionary(word: string, dic: Map<string, number>) {
   const wordArray = word.split("");
   wordArray.forEach((letter) => {
     if (dic.get(letter)) {
-      dic.set(letter, dic.get(letter) + 1);
+      dic.set(letter, dic.get(letter)! + 1);
     } else {
       dic.set(letter, 1);
     }
   });
 }
 
-function isCorrect(userWord, word, row) {
+function isCorrect(userWord: string, word: string, row: number) {
   if (row === 3 && userWord !== word) {
     console.log("fail");
   } else if (userWord === word) {
@@ -20,7 +33,7 @@ function isCorrect(userWord, word, row) {
   }
 }
 
-export function useBoard() {
+export function useBoard(): IuseBoard {
   const [board, setBoard] = useState(matrix);
   const [attempt] = useState({ rowAttempt: 0, cellAttempt: 0 });
   const word = "hello";
@@ -33,7 +46,7 @@ export function useBoard() {
     };
   });
 
-  function letterInInput(letter) {
+  function letterInInput(letter: string) {
     if (!letter) return;
     board[attempt.rowAttempt][attempt.cellAttempt].letter = letter;
     let userWord = "";
@@ -81,7 +94,7 @@ export function useBoard() {
     setBoard([...board]);
   }
 
-  function handleKeyPress(e) {
+  function handleKeyPress(e: KeyboardEvent) {
     if ("qwertyuioplkjhgfdsazxcvbnm".includes(e.key)) {
       letterInInput(e.key);
     }

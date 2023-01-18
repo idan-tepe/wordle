@@ -6,7 +6,7 @@ import { AppContext } from "../contexts/appContext";
 import { useBoard } from "../hooks/useBoard";
 
 export function Game() {
-  const boardApi = useBoard();
+  let boardApi = useBoard();
   return (
     <AppContext.Provider value={boardApi}>
       <div>

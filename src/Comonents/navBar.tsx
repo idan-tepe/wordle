@@ -2,13 +2,14 @@ import { Link } from "react-router-dom";
 import { useContext, useEffect } from "react";
 import { NavBarContext } from "../contexts/navBarContext";
 import { InfoPopUp } from "./infoPage";
+import { INavBar } from "../App";
 
 export default function NavBar() {
-  const { handleShow, user, setUser } = useContext(NavBarContext);
+  const { handleShow, user, setUser } = useContext(NavBarContext) as INavBar;
 
   useEffect(() => {
     //console.log(data, "effect");
-    const isUser = JSON.parse(localStorage.getItem("dataKey"));
+    const isUser = JSON.parse(localStorage.getItem("dataKey") as string);
 
     if (isUser && user === "guest") {
       setUser(isUser.userName);
@@ -42,7 +43,11 @@ export default function NavBar() {
                 {user} log out
               </span>
             )}
-            <Link className="nav-item nav-link active" onClick={handleShow}>
+            <Link
+              className="nav-item nav-link active"
+              onClick={handleShow}
+              to="#"
+            >
               info
             </Link>
             <InfoPopUp />

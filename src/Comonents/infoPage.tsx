@@ -1,10 +1,11 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 
 import Modal from "react-bootstrap/Modal";
 import { NavBarContext } from "../contexts/navBarContext";
+import { INavBar } from "../App";
 
 export function InfoPopUp() {
-  const { setShow, show } = useContext(NavBarContext);
+  const { setShow, show } = useContext(NavBarContext) as INavBar;
   const handleClose = () => setShow(false);
 
   return (
