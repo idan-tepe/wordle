@@ -14,11 +14,9 @@ export function Keyboard() {
   const r3 = ["z", "x", "c", "v", "b", "n", "m"];
   const { letterInInput } = useContext(AppContext) as IuseBoard;
 
-  //I tried to put React.MouseEvent<HTMLButtonElement> as type of e but there is a problem with the innerText that isnt rcognized
-  // @ts-ignore:
-  function handleButtonClick(e) {
-    console.log(e.target.innerText);
-    letterInInput(e.target.innerText);
+  function handleButtonClick(e: React.MouseEvent<HTMLButtonElement>) {
+    console.log((e.target as HTMLButtonElement).innerText);
+    letterInInput((e.target as HTMLButtonElement).innerText);
   }
 
   function colorOfButton(currentLetter: string) {
